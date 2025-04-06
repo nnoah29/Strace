@@ -25,19 +25,27 @@ void deactivation_output(void)
     }
 }
 
+void exe(char **prog)
+{
+    ptrace(PTRACE_TRACEME, 0, NULL, NULL);
+    deactivation_output();
+    execvp(prog[0], prog);
+    perror("execvp");
+}
+
 int main(int argc, char *argv[])
 {
     pid_t child = -1;
     char **prog = parse_command_line(argc, argv, &specific_PID);
 
-    child = fork();
+    if (prog[0] == NULL)
+        child = specific_PID;
+    else
+        child = fork();
     if (child == -1)
         exit_with_error("fork");
     if (child == 0) {
-        ptrace(PTRACE_TRACEME, 0, NULL, NULL);
-        deactivation_output();
-        execvp(prog[0], prog);
-        perror("execvp");
+        exe(prog);
         return 1;
     } else {
         trace_prog(child);

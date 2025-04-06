@@ -14,20 +14,8 @@ void exit_with_error(char *msg)
     exit(84);
 }
 
-void parse_command_line2(char *argv[], int *i, int argc, config_t *config)
+void parse_commande_line3(char *argv[], const int *i, config_t *config)
 {
-    if (strcmp(argv[*i], "-s") == 0) {
-        config->detailled = 1;
-        return;
-    }
-    if (strcmp(argv[*i], "-p") == 0) {
-        if ((*i) >= argc) {
-            (*i)++;
-            exit_with_error("Erreur: -p doit être suivi d'un PID.\n");
-        }
-        config->pid = atoi(argv[*i]);
-        return;
-    }
     for (int j = 0; j < 10; j++) {
         if (j != 0 && strcmp(argv[(*i) - 1], config->cmd[j - 1]) != 0)
             return;
@@ -36,6 +24,25 @@ void parse_command_line2(char *argv[], int *i, int argc, config_t *config)
             return;
         }
     }
+}
+
+void parse_command_line2(char *argv[], int *i, int argc, config_t *config)
+{
+    int a = 0;
+
+    if (strcmp(argv[*i], "-s") == 0) {
+        config->detailled = 1;
+        return;
+    }
+    if (strcmp(argv[*i], "-p") == 0) {
+        a = (*i) + 1;
+        if (a >= argc)
+            exit_with_error("Erreur: -p doit être suivi d'un PID.\n");
+        (*i)++;
+        config->pid = atoi(argv[*i]);
+        return;
+    }
+    parse_commande_line3(argv, i, config);
 }
 
 char **parse_command_line(int argc, char *argv[], pid_t *pid)
