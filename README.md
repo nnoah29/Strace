@@ -58,6 +58,33 @@ Lancer le programme avec :
 
 Noah TOFFA, noah.toffa@epitech.eu
 
+## 📊 Résultats de la soutenance / notation
+
+- **Prérequis** : ✅ 100% validés
+
+### Coding style
+- Fatal : 0
+- Major : 2
+- Minor : 0
+- Info  : 0
+
+### Couverture de code
+- Branches : 0%
+- Lignes   : 0%
+
+### Tests automatiques
+
+| Test                        | Total | Passés | Crash | Échoués/ignorés |
+|-----------------------------|-------|--------|-------|-----------------|
+| 01 - Rigour                 | 2     | 2      | 0     | 0               |
+| 02 - syscall name           | 3     | 3      | 0     | 0               |
+| 03 - Return value           | 3     | 3      | 0     | 0               |
+| 04 - Parameters             | 2     | 2      | 0     | 0               |
+
+- Advanced syscall : ✅ PASSED
+- Basic syscall : ✅ PASSED
+- Basic syscall, -s option : ✅ PASSED
+
 ## ⚖️ Licence
 
 Ce projet est développé dans le cadre du module B-PSU-400 à EPITECH.
